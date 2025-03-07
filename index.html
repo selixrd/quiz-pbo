@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kuis PBO</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="login-container" id="loginScreen">
         <h1>Login</h1>
-        <input type="text" id="username" placeholder="Username">
-        <button onclick="startQuiz()">Mulai</button>
+        <input type="text" id="username" placeholder="Nama lu siapa">
+        <button onclick="startQuiz()">Gas cuy</button>
     </div>
 
     <div class="quiz-container" id="quizScreen" style="display: none;">
@@ -27,11 +28,9 @@
     </div>
 
     <div class="result-container" id="resultScreen" style="display: none;">
-        <h1>Skor Akhir</h1>
+        <h1>Your score</h1>
         <p id="finalScore"></p>
-        <button onclick="restartQuiz()">Coba Lagi</button>
+        <button onclick="restartQuiz()">Lagi kuy</button>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
