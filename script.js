@@ -186,11 +186,18 @@ let currentQuestionIndex = 0;
 let userAnswers = new Array(questions.length).fill(null);
 
 function loadQuestion(index) {
-    document.getElementById("question").textContent = `${questions[index].number}. ${questions[index].question}`;
-    document.getElementById("options").innerHTML = questions[index].options.map((option, i) => 
-        `<button onclick="selectAnswer(${i})" class="${userAnswers[index] === i ? 'selected' : ''}">${String.fromCharCode(65 + i)}. ${option}</button>`
+    let questionData = questions[index];
+
+    document.getElementById("questionNumber").textContent = `Soal ${questionData.number}`;
+    document.getElementById("questionText").textContent = questionData.question;
+    document.getElementById("options").innerHTML = questionData.options.map((option, i) =>
+        `<button class="option ${userAnswers[index] !== null ? (i === questions[index].answer ? 'correct' : (i === userAnswers[index] ? 'wrong' : '')) : ''}" 
+        onclick="selectAnswer(${i})">${String.fromCharCode(65 + i)}. ${option}</button>`
     ).join("");
-    document.getElementById("progress").textContent = `${userAnswers.filter(ans => ans !== null).length}/${questions.length}`;
+
+    document.getElementById("answeredCount").textContent = `${userAnswers.filter(ans => ans !== null).length}/${questions.length}`;
+    document.getElementById("prevButton").disabled = index === 0;
+    document.getElementById("nextButton").textContent = index === questions.length - 1 ? "Selesai" : "Soal Berikutnya";
 }
 
 function selectAnswer(answerIndex) {
@@ -202,6 +209,8 @@ function nextQuestion() {
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
         loadQuestion(currentQuestionIndex);
+    } else {
+        submitQuiz();
     }
 }
 
@@ -217,8 +226,48 @@ function submitQuiz() {
         alert("Anda harus menjawab semua soal terlebih dahulu!");
         return;
     }
+
     let score = userAnswers.reduce((score, ans, i) => score + (ans === questions[i].answer ? 1 : 0), 0);
-    document.getElementById("quiz-container").innerHTML = `<h2>Skor Anda: ${score}/${questions.length}</h2>`;
+    
+    let username = document.getElementById("username").value.trim();
+    if (!username) {
+        alert("Masukkan username terlebih dahulu!");
+        return;
+    }
+
+    let url = "https://script.google.com/macros/s/AKfycbwQJE15XnH3W-Y-rEyWir92QsUnmpauSEBo7HMWZ6EzfWbRmvR_hfBi12YAStyh9sY4/exec";
+    
+    fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nama: username, skor: score })
+    })
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.error("Error:", error));
+
+    document.getElementById("quizScreen").style.display = "none";
+    document.getElementById("resultScreen").style.display = "block";
+    document.getElementById("finalScore").textContent = `Skor Anda: ${score}/${questions.length}`;
+}
+
+function restartQuiz() {
+    currentQuestionIndex = 0;
+    userAnswers.fill(null);
+    document.getElementById("resultScreen").style.display = "none";
+    document.getElementById("quizScreen").style.display = "block";
+    loadQuestion(currentQuestionIndex);
+}
+
+function startQuiz() {
+    let username = document.getElementById("username").value.trim();
+    if (username === "") {
+        alert("Masukkan username terlebih dahulu!");
+        return;
+    }
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("quizScreen").style.display = "block";
+    loadQuestion(currentQuestionIndex);
 }
 
 document.addEventListener("DOMContentLoaded", () => loadQuestion(currentQuestionIndex));
