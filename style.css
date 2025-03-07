@@ -1,17 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #121212;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     text-align: center;
-    margin: 0;
-    padding: 0;
 }
 
 .login-container, .quiz-container, .result-container {
     width: 90%;
     max-width: 400px;
-    margin: auto;
-    margin-top: 50px;
     background-color: #1e1e1e;
     padding: 20px;
     border-radius: 10px;
@@ -80,4 +86,4 @@ button:disabled {
 
 .result-container p {
     font-size: 24px;
-}
+    }
