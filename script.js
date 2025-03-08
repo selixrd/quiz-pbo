@@ -235,7 +235,7 @@ function submitQuiz() {
         return;
     }
 
-    let url = "https://script.google.com/macros/s/AKfycbyPWoFg_1IZADm7jCn3llGLiUkvlQ8bZUMpdFYFX2GHYEWKptxePXpvQ6VWE4HFVaC3/exec";
+    let url = "https://script.google.com/macros/s/AKfycbzOpXWzk-O_yAHQIgnTZs9xvMIZ6FsuDrlO1sosf1UDOabnXeDn_t9KLd8D5S2KgbzouA/exec";
     
     fetch(url, {
         method: "POST",
