@@ -8,15 +8,17 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- Login Screen -->
     <div class="login-container" id="loginScreen">
         <h1>Login</h1>
         <input type="text" id="username" placeholder="Nama lu siapa">
         <button onclick="startQuiz()">Gas cuy</button>
     </div>
 
+    <!-- Quiz Screen -->
     <div class="quiz-container" id="quizScreen" style="display: none;">
         <div class="quiz-header">
-            <span id="questionNumber"></span>
+            <span id="questionNumber"></span> 
             <span id="answeredCount">0/30</span>
         </div>
         <div id="questionText"></div>
@@ -27,6 +29,7 @@
         </div>
     </div>
 
+    <!-- Result Screen -->
     <div class="result-container" id="resultScreen" style="display: none;">
         <h1>Your score</h1>
         <p id="finalScore"></p>
