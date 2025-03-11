@@ -24,12 +24,26 @@ body {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
+/* Styling input nama biar lebih besar */
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Styling tombol Gas keun lebih kecil */
 button {
     background-color: #1db954;
     color: white;
     border: none;
-    padding: 10px;
-    margin-top: 10px;
+    padding: 8px; /* Mengecilkan ukuran tombol */
+    font-size: 14px; /* Ukuran font lebih kecil */
+    font-weight: bold;
+    margin-top: 15px;
     width: 100%;
     cursor: pointer;
     border-radius: 5px;
@@ -43,21 +57,22 @@ button:disabled {
 .quiz-header {
     display: flex;
     justify-content: space-between;
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 15px;
 }
 
 #questionText {
-    font-size: 20px;
+    font-size: 16px; /* Ukuran soal sedikit lebih besar */
     margin-bottom: 10px;
 }
 
 .option {
     background-color: #282828;
-    padding: 10px;
+    padding: 8px;
     margin: 5px 0;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 14px;
     transition: 0.3s;
 }
 
@@ -84,6 +99,11 @@ button:disabled {
     100% { transform: translateX(0); }
 }
 
+.selected {
+    background-color: #b3e6ff;  /* Warna latar belakang jawaban yang dipilih */
+    cursor: not-allowed;  /* Menambahkan pointer tidak bisa dipilih */
+}
+
 .result-container p {
-    font-size: 24px;
-    }
+    font-size: 20px;
+}
